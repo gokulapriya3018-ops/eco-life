@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoLife Register</title>
+
+    <style>
+        body {
+            margin: 0; padding: 0;
+            height: 100vh;
+            background: linear-gradient(to right, #dcedc8, #c5e1a5);
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .card {
+            width: 420px;
+            background: white;
+            padding: 35px 30px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0, 100, 0, 0.2);
+            animation: fadeIn 0.8s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity:0; transform:translateY(20px); }
+            to { opacity:1; transform:translateY(0); }
+        }
+        h2 {
+            color: #1b5e20;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .subtitle {
+            text-align: center;
+            color: #4caf50;
+            margin-bottom: 25px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: 2px solid #a5d6a7;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus {
+            border-color: #1b5e20;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: #1b5e20;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover {
+            background: #0d4d16;
+        }
+        .msg {
+            color: red;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .link {
+            text-align: center;
+            margin-top: 12px;
+        }
+        .link a {
+            color: #1b5e20;
+            font-weight: 600;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Create Account 🌱</h2>
+    <div class="subtitle">Join the EcoLife community</div>
+
+    {% for message in messages %}
+        <p class="msg">{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="👤 Username" required>
+        <input type="email" name="email" placeholder="📧 Email" required>
+        <input type="password" name="password" placeholder="🔒 Password" required>
+        <input type="password" name="confirm_password" placeholder="🔒 Confirm Password" required>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <div class="link">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { background:#eef8ff; text-align:center; padding:20px; font-family:Arial;}
+        .graph-box { width:70%; margin:auto; background:white; padding:20px; border-radius:20px; box-shadow:0 0 10px #c4e1ff; margin-bottom:40px; }
+    </style>
+</head>
+<body>
+
+<h2>📅 Monthly Electricity CO₂ Emission</h2>
+
+<div class="graph-box">
+    <canvas id="lineChart"></canvas>
+</div>
+
+<h2>⚡ Electricity Source Usage</h2>
+
+<div class="graph-box">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<script>
+var ctx1 = document.getElementById("lineChart").getContext("2d");
+new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: {{ months|safe }},
+        datasets: [{
+            label: "Monthly CO₂ Emission (kg)",
+            data: {{ emissions|safe }},
+            borderWidth: 2
+        }]
+    }
+});
+
+var ctx2 = document.getElementById("pieChart").getContext("2d");
+new Chart(ctx2, {
+    type: 'pie',
+    data: {
+        labels: ["Fan", "AC", "Fridge", "Others"],
+        datasets: [{
+            data: {{ pie_data|safe }},
+        }]
+    }
+});
+</script>
+
+</body>
+</html>

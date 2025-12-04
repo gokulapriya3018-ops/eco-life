@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Weekly Graph</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body{font-family:Poppins, sans-serif;background:#f1f8e9;}
+    .wrap{max-width:900px;margin:40px auto;background:#fff;padding:28px;border-radius:14px;box-shadow:0 8px 20px rgba(46,125,50,0.15);}
+    h2{color:#1b5e20}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2>Weekly CO₂ (last 7 days)</h2>
+    <canvas id="weekChart" height="120"></canvas>
+  </div>
+
+  <script>
+    const labels = {{ labels|safe }};
+    const totals = {{ totals|safe }};
+
+    new Chart(document.getElementById('weekChart'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'kg CO₂',
+          data: totals,
+          tension: 0.3,
+          borderWidth: 3,
+          pointRadius: 4,
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity History</title>
+    <style>
+        body {
+            background: #e8f5e9;
+            font-family: Arial;
+        }
+        .container {
+            width: 70%;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th {
+            background: #2e7d32;
+            color: white;
+            padding: 12px;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        h2 {
+            color: #1b5e20;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>📜 Activity History</h2>
+
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Carbon</th>
+            <th>Water</th>
+            <th>Electricity</th>
+            <th>Total</th>
+        </tr>
+
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.date }}</td>
+            <td>{{ log.carbon }}</td>
+            <td>{{ log.water }}</td>
+            <td>{{ log.electricity }}</td>
+            <td>{{ log.total_score }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">No activity yet</td></tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
