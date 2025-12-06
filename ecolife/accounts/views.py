@@ -70,7 +70,7 @@ from django.contrib.auth.models import User
 
 @login_required
 def edit_profile(request):
-    user = request.user   # ✔ get logged in user
+    user = request.user   
 
     if request.method == "POST":
         username = request.POST.get("username")
@@ -78,7 +78,7 @@ def edit_profile(request):
         first_name = request.POST.get("first_name")
         last_name = request.POST.get("last_name")
 
-        # ✔ prevent empty username
+
         if username == "" or username is None:
             messages.error(request, "Username cannot be empty.")
             return redirect('edit_profile')
@@ -88,7 +88,7 @@ def edit_profile(request):
         user.first_name = first_name
         user.last_name = last_name
 
-        user.save()   # ✔ now it works
+        user.save()  
         messages.success(request, "Profile updated successfully!")
 
         return redirect('profile')
